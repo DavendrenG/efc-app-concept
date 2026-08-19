@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EFC — Official App Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Semi+Condensed:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A0B0D;
+  --canvas:#15181C;
+  --steel:#1F242A;
+  --line:#2C333B;
+  --bone:#EDE7DA;
+  --mute:#8A939D;
+  --blood:#D8342A;
+  --brass:#C89B3C;
+  --corner-red:#C4342B;
+  --corner-blue:#2D6C9E;
+  --display:'Anton',Impact,sans-serif;
+  --body:'Barlow Semi Condensed',system-ui,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--ink);color:var(--bone);font-family:var(--body);
+  font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+
+/* ---------- top bar ---------- */
+.topbar{
+  border-bottom:1px solid var(--line);background:rgba(10,11,13,.92);
+  backdrop-filter:blur(8px);position:sticky;top:0;z-index:50;
+}
+.topbar .wrap{display:flex;align-items:center;justify-content:space-between;height:58px;gap:16px}
+.mark{font-family:var(--display);font-size:20px;letter-spacing:.06em}
+.mark span{color:var(--blood)}
+.stamp{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--mute);border:1px solid var(--line);padding:5px 9px;border-radius:2px;
+}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 44px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+.hero:before{
+  content:"";position:absolute;inset:0;
+  background:
+    repeating-linear-gradient(115deg,rgba(216,52,42,.05) 0 2px,transparent 2px 22px);
+  pointer-events:none;
+}
+.eyebrow{
+  font-family:var(--mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--blood);margin-bottom:22px;
+}
+h1{
+  font-family:var(--display);font-size:clamp(42px,7.4vw,88px);line-height:.9;
+  text-transform:uppercase;letter-spacing:-.01em;max-width:16ch;
+}
+h1 em{font-style:normal;color:var(--blood)}
+.lede{max-width:56ch;margin-top:26px;font-size:19px;color:#C6C0B4}
+.tape{
+  display:flex;flex-wrap:wrap;gap:0;margin-top:40px;border:1px solid var(--line);
+}
+.tape div{
+  flex:1 1 160px;padding:16px 18px;border-right:1px solid var(--line);
+}
+.tape div:last-child{border-right:0}
+.tape b{display:block;font-family:var(--display);font-size:27px;line-height:1}
+.tape small{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--mute)}
+
+/* ---------- layout ---------- */
+.split{display:grid;grid-template-columns:1fr 400px;gap:64px;padding:72px 0}
+.phonecol{position:sticky;top:92px;align-self:start}
+
+/* ---------- phone ---------- */
+.phone{
+  width:360px;max-width:100%;margin:0 auto;background:#000;border-radius:38px;
+  border:9px solid #24282D;box-shadow:0 40px 90px rgba(0,0,0,.75);overflow:hidden;
+}
+.notch{height:26px;background:#000;position:relative}
+.notch:after{content:"";position:absolute;left:50%;transform:translateX(-50%);top:7px;width:96px;height:19px;background:#16181B;border-radius:12px}
+.screen{height:600px;overflow-y:auto;background:var(--canvas);scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.pane{display:none;padding-bottom:14px}
+.pane.on{display:block;animation:fade .22s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+.appbar{
+  display:flex;align-items:center;justify-content:space-between;padding:12px 16px;
+  border-bottom:1px solid var(--line);position:sticky;top:0;background:var(--canvas);z-index:5;
+}
+.appbar .t{font-family:var(--display);font-size:16px;letter-spacing:.06em;text-transform:uppercase}
+.appbar .i{font-family:var(--mono);font-size:10px;color:var(--mute);letter-spacing:.1em}
+
+/* home */
+.poster{position:relative;padding:22px 18px 20px;background:linear-gradient(160deg,#1D2228,#101317 65%);border-bottom:1px solid var(--line)}
+.poster:before{content:"";position:absolute;top:0;left:0;width:3px;height:100%;background:var(--blood)}
+.kicker{font-family:var(--mono);font-size:10px;letter-spacing:.2em;color:var(--blood);text-transform:uppercase}
+.evtno{font-family:var(--display);font-size:38px;line-height:.95;margin-top:6px;text-transform:uppercase}
+.vsline{margin-top:4px;font-family:var(--display);font-size:19px;color:#D8D2C6;text-transform:uppercase;letter-spacing:.02em}
+.meta{margin-top:10px;font-family:var(--mono);font-size:11px;color:var(--mute);line-height:1.7}
+.clock{display:flex;gap:8px;margin-top:16px}
+.clock div{flex:1;background:#0B0D10;border:1px solid var(--line);padding:8px 4px;text-align:center}
+.clock b{display:block;font-family:var(--display);font-size:22px;line-height:1}
+.clock small{font-family:var(--mono);font-size:8.5px;letter-spacing:.14em;color:var(--mute)}
+.btnrow{display:flex;gap:8px;margin-top:14px}
+.btn{
+  flex:1;text-align:center;padding:11px 8px;font-family:var(--display);font-size:13px;
+  letter-spacing:.08em;text-transform:uppercase;cursor:pointer;border:1px solid var(--blood);
+  background:var(--blood);color:#fff;
+}
+.btn.ghost{background:transparent;color:var(--bone);border-color:var(--line)}
+
+.sec{padding:16px 16px 4px}
+.sech{font-family:var(--mono);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--mute);margin-bottom:10px;display:flex;justify-content:space-between}
+.rail{display:flex;gap:10px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none}
+.rail::-webkit-scrollbar{display:none}
+.tile{min-width:132px;background:var(--steel);border:1px solid var(--line)}
+.tile .th{height:74px;background:linear-gradient(135deg,#2A3138,#171B20);display:flex;align-items:flex-end;padding:7px;position:relative}
+.tile .th span{font-family:var(--mono);font-size:9px;background:#000;padding:2px 5px;letter-spacing:.1em}
+.tile p{padding:8px;font-size:13.5px;line-height:1.3}
+
+.row{display:flex;gap:11px;padding:12px 16px;border-bottom:1px solid var(--line);align-items:center}
+.row .date{
+  min-width:46px;text-align:center;border:1px solid var(--line);padding:5px 2px;font-family:var(--mono)
+}
+.row .date b{display:block;font-family:var(--display);font-size:19px;line-height:1}
+.row .date small{font-size:8.5px;letter-spacing:.12em;color:var(--mute)}
+.row h4{font-family:var(--display);font-size:15px;text-transform:uppercase;letter-spacing:.03em;font-weight:400}
+.row p{font-family:var(--mono);font-size:10px;color:var(--mute);margin-top:3px;letter-spacing:.04em}
+.pill{font-family:var(--mono);font-size:9px;padding:3px 6px;border:1px solid var(--brass);color:var(--brass);letter-spacing:.1em;white-space:nowrap}
+.pill.live{border-color:var(--blood);color:#fff;background:var(--blood)}
+.pill.free{border-color:#3E7D58;color:#7FD3A0}
+
+/* tale of tape */
+.tot{padding:16px}
+.tot .head{display:flex;text-align:center;font-family:var(--display);text-transform:uppercase}
+.tot .head div{flex:1;padding:12px 6px}
+.tot .head div:first-child{background:linear-gradient(180deg,rgba(196,52,43,.28),transparent);border-left:3px solid var(--corner-red)}
+.tot .head div:last-child{background:linear-gradient(180deg,rgba(45,108,158,.28),transparent);border-right:3px solid var(--corner-blue)}
+.tot .head b{font-size:17px;display:block;line-height:1.05}
+.tot .head small{font-family:var(--mono);font-size:9.5px;color:var(--mute);letter-spacing:.1em}
+.totrow{display:flex;align-items:center;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px}
+.totrow span{flex:1;padding:9px 6px;text-align:center}
+.totrow span.lbl{font-size:9px;letter-spacing:.14em;color:var(--mute);flex:0 0 34%;text-transform:uppercase}
+
+.divtabs{display:flex;gap:6px;overflow-x:auto;padding:12px 16px;scrollbar-width:none}
+.divtabs::-webkit-scrollbar{display:none}
+.divtabs b{
+  font-family:var(--mono);font-size:10px;letter-spacing:.1em;padding:6px 10px;border:1px solid var(--line);
+  white-space:nowrap;color:var(--mute);cursor:pointer;font-weight:400
+}
+.divtabs b.on{border-color:var(--blood);color:#fff;background:rgba(216,52,42,.16)}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px}
+.card{background:var(--steel);border:1px solid var(--line)}
+.card .th{height:88px;background:linear-gradient(135deg,#262C33,#14181C);position:relative}
+.card .th i{position:absolute;bottom:6px;left:6px;font-family:var(--mono);font-style:normal;font-size:8.5px;background:#000;padding:2px 5px;letter-spacing:.1em}
+.card p{padding:8px;font-size:13.5px;line-height:1.25}
+.card p em{display:block;font-style:normal;font-family:var(--mono);font-size:9.5px;color:var(--mute);margin-top:3px}
+
+.newsitem{padding:13px 16px;border-bottom:1px solid var(--line)}
+.newsitem small{font-family:var(--mono);font-size:9.5px;color:var(--mute);letter-spacing:.12em}
+.newsitem h4{font-family:var(--display);font-size:15.5px;text-transform:uppercase;font-weight:400;margin-top:5px;letter-spacing:.02em;line-height:1.15}
+
+.tabbar{display:flex;background:#0B0D10;border-top:1px solid var(--line)}
+.tabbar button{
+  flex:1;background:none;border:0;color:var(--mute);padding:11px 2px 13px;cursor:pointer;
+  font-family:var(--mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
+}
+.tabbar button.on{color:#fff;box-shadow:inset 0 2px 0 var(--blood)}
+.tabbar button i{display:block;font-style:normal;font-size:15px;margin-bottom:3px}
+
+.phonenote{text-align:center;font-family:var(--mono);font-size:10px;color:var(--mute);margin-top:16px;letter-spacing:.08em;line-height:1.7}
+
+/* ---------- pitch body ---------- */
+h2{font-family:var(--display);font-size:clamp(26px,3.4vw,38px);text-transform:uppercase;line-height:1;margin-bottom:8px}
+.sub{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--blood);margin-bottom:20px}
+.block{margin-bottom:58px}
+.block p{margin-bottom:14px;color:#C6C0B4;max-width:62ch}
+.gap{border-left:2px solid var(--line);padding-left:18px;margin:22px 0}
+.gap h4{font-family:var(--display);font-size:17px;text-transform:uppercase;font-weight:400;letter-spacing:.02em}
+.gap p{font-size:16px;margin-top:4px}
+
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15.5px}
+th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:400}
+td b{font-family:var(--display);font-weight:400;font-size:16px;letter-spacing:.02em}
+td.num{font-family:var(--mono);font-size:13.5px;white-space:nowrap}
+
+.phaselist{list-style:none;counter-reset:p}
+.phaselist li{
+  counter-increment:p;border-top:1px solid var(--line);padding:16px 0 16px 52px;position:relative;
+}
+.phaselist li:before{
+  content:"WK " counter(p);position:absolute;left:0;top:18px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.1em;color:var(--blood)
+}
+.phaselist li b{font-family:var(--display);font-weight:400;text-transform:uppercase;font-size:16px;display:block}
+.phaselist li span{color:var(--mute);font-size:15px}
+
+.contact{border:1px solid var(--line);padding:28px;background:var(--steel)}
+.contact a{color:var(--blood);text-decoration:none;border-bottom:1px solid rgba(216,52,42,.4)}
+.contact ul{list-style:none;margin-top:14px}
+.contact li{padding:9px 0;border-bottom:1px solid var(--line);font-size:16px}
+.contact li:last-child{border:0}
+.contact li em{font-style:normal;font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;color:var(--mute);display:block;text-transform:uppercase}
+
+.script{background:#0E1114;border:1px solid var(--line);padding:22px;font-size:16px;color:#C6C0B4;margin-top:16px}
+.script b{color:var(--bone)}
+
+footer{border-top:1px solid var(--line);padding:32px 0 60px;font-family:var(--mono);font-size:11px;color:var(--mute);letter-spacing:.08em;line-height:1.9}
+
+@media(max-width:900px){
+  .split{grid-template-columns:1fr;gap:44px;padding:48px 0}
+  .phonecol{position:static;order:-1}
+  .hero{padding:52px 0 34px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <div class="mark">EFC<span>/</span>APP</div>
+  <div class="stamp">Working prototype · sample data</div>
+</div></div>
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Concept — the official EFC app</div>
+  <h1>EFC owns the fights. It doesn't yet own the <em>audience</em>.</h1>
+  <p class="lede">Every event, every fighter, every highlight currently lives on somebody else's platform — a broadcaster's schedule, a social feed's algorithm, a PDF on a website. An owned app turns 17 years of fight archive and a continent of fans into a direct channel EFC controls, measures and sells against.</p>
+  <div class="tape">
+    <div><b>10</b><small>Live events / year</small></div>
+    <div><b>120+</b><small>Contracted athletes</small></div>
+    <div><b>130+</b><small>Events in the archive</small></div>
+    <div><b>0</b><small>Owned mobile apps</small></div>
+  </div>
+</div></header>
+
+<div class="wrap split">
+
+<!-- ============ LEFT: PITCH ============ -->
+<main>
+
+  <section class="block">
+    <div class="sub">The gap</div>
+    <h2>Where the audience leaks out</h2>
+    <p>This isn't a criticism of the current setup — it's a description of what a broadcaster-led distribution model can't do. Four leaks, all fixable with one product:</p>
+
+    <div class="gap"><h4>No fan list</h4><p>Followers belong to Meta, TikTok and YouTube. If those platforms change the feed tomorrow, reach drops and there's no way to reach fans directly. An app gives EFC push notifications straight to a fan's lock screen — for free, forever.</p></div>
+    <div class="gap"><h4>News that can't travel</h4><p>Fight announcements currently land as PDF documents. They can't be shared, indexed, notified or measured. The same story inside an app becomes a push, a share card and a data point.</p></div>
+    <div class="gap"><h4>An archive doing nothing between events</h4><p>Ten events a year means 355 days with no live product. A searchable fight library — by fighter, by division, by finish — keeps the app open in the gap and makes every new signing a reason to go back through the catalogue.</p></div>
+    <div class="gap"><h4>Sponsorship priced on guesswork</h4><p>WSB, The Capital and Knox currently buy arena and broadcast exposure. An app adds a measurable inventory — sponsored sections, notification takeovers, in-app activations — with real numbers attached. That's a new line item, not a new discount.</p></div>
+  </section>
+
+  <section class="block">
+    <div class="sub">Scope — phase one</div>
+    <h2>What ships</h2>
+    <p>Deliberately no live pay-per-view in phase one. Live streaming is where the cost, the rights complexity and the risk sit, and it's the wrong thing to prove first. Phase one builds the audience; live gets added once there's an audience worth streaming to.</p>
+    <table>
+      <tr><th>In</th><th>How it works</th></tr>
+      <tr><td><b>Event hub</b></td><td>Full card, running order, countdown, venue, ticket link, results the moment they're official.</td></tr>
+      <tr><td><b>Fighter database</b></td><td>All contracted athletes, by division, with records, tale-of-the-tape comparisons and champion status.</td></tr>
+      <tr><td><b>Fight library (VOD)</b></td><td>Full fights, prelims, highlights and behind-the-scenes, searchable by fighter and division. Free tier + premium tier.</td></tr>
+      <tr><td><b>News</b></td><td>Proper articles with images, replacing the PDF workflow. Published from a CMS by EFC's own team.</td></tr>
+      <tr><td><b>Push notifications</b></td><td>Card announcements, fight-week reminders, live results. Segmented by favourite fighter.</td></tr>
+      <tr><td><b>CMS + analytics</b></td><td>EFC staff publish everything themselves. Dashboard shows installs, watch time, retention, sponsor impressions.</td></tr>
+      <tr><td><b>iOS + Android</b></td><td>One codebase, both stores, published under EFC's own developer accounts.</td></tr>
+    </table>
+    <table>
+      <tr><th>Out of phase one</th><th>Why</th></tr>
+      <tr><td><b>Live PPV streaming</b></td><td>Adds DRM, CDN and rights clearance. Phase two, once install base justifies it.</td></tr>
+      <tr><td><b>Smart TV apps</b></td><td>Follows the live build, not before.</td></tr>
+      <tr><td><b>Betting integration</b></td><td>Licensing-dependent. Scoped separately with WSB if wanted.</td></tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="sub">The commercial case</div>
+    <h2>What it opens up</h2>
+    <p>Three routes, and only one of them asks fans to pay anything:</p>
+    <table>
+      <tr><th>Route</th><th>Mechanic</th></tr>
+      <tr><td><b>Sponsorship inventory</b></td><td>A presenting partner on an owned, measurable channel — impressions, watch time and audience data attached. Something WSB, The Capital and Knox can be sold at renewal that doesn't exist today.</td></tr>
+      <tr><td><b>Premium archive tier</b></td><td>Free highlights and news for everyone; full fights and the historic archive behind a modest monthly tier for the hardcore fanbase.</td></tr>
+      <tr><td><b>Tickets and merchandise</b></td><td>Card announcements land on the lock screen of everyone who has ever opened the app, ticket link one tap away. Consistently a lower cost per ticket than paid social.</td></tr>
+    </table>
+  </section>
+
+  <section class="block">
+    <div class="sub">Delivery</div>
+    <h2>16 weeks to store</h2>
+    <ul class="phaselist">
+      <li><b>Discovery &amp; content audit</b><span>What's in the archive, what format, who publishes what internally.</span></li>
+      <li><b>Design direction</b><span>Two visual routes on real EFC content. One gets picked, one gets binned.</span></li>
+      <li><b>Full screen designs signed off</b><span>Every screen, clickable, before a line of production code.</span></li>
+      <li><b>Backend &amp; CMS build</b><span>Fighters, events, articles, video. EFC's team trained on it.</span></li>
+      <li><b>App build</b><span>iOS and Android from one codebase.</span></li>
+      <li><b>Content load &amp; internal beta</b><span>Real events, real fighters, EFC staff testing on their own phones.</span></li>
+      <li><b>Store review &amp; launch</b><span>Timed to land the week of an event card, not a quiet Tuesday.</span></li>
+    </ul>
+    <p style="margin-top:20px">Launching against a live event matters. An announcement week gives the app its first push notification, its first spike and its first retention curve on day one.</p>
+  </section>
+
+  <section class="block">
+    <div class="sub">Next</div>
+    <h2>Where this goes</h2>
+    <p>What you're clicking through is a working prototype, not a mockup — the structure, the navigation and the content model are real. The next step is a short session with the EFC team to pin down two things: how much of the archive comes across at launch, and which event card the launch is timed to.</p>
+    <p>Launching against a live event matters more than launching early. An announcement week gives the app its first push notification, its first spike, and a retention curve worth reading from day one.</p>
+  </section>
+
+</main>
+
+<!-- ============ RIGHT: PHONE ============ -->
+<aside class="phonecol">
+  <div class="phone">
+    <div class="notch"></div>
+    <div class="screen" id="screen">
+
+      <!-- HOME -->
+      <section class="pane on" id="p-home">
+        <div class="appbar"><div class="t">EFC</div><div class="i">JHB · CAT</div></div>
+        <div class="poster">
+          <div class="kicker">Next event · Main card</div>
+          <div class="evtno">EFC 137</div>
+          <div class="vsline">Miyaba vs Sovendle</div>
+          <div class="meta">THU 10 SEPTEMBER 2026<br>WSB EFC ARENA · SANDTON<br>PRELIMS 14H00 · MAIN CARD 19H00</div>
+          <div class="clock" id="clock">
+            <div><b id="cd">–</b><small>Days</small></div>
+            <div><b id="ch">–</b><small>Hrs</small></div>
+            <div><b id="cm">–</b><small>Min</small></div>
+            <div><b id="cs">–</b><small>Sec</small></div>
+          </div>
+          <div class="btnrow">
+            <div class="btn">Get tickets</div>
+            <div class="btn ghost">Remind me</div>
+          </div>
+        </div>
+
+        <div class="sec">
+          <div class="sech"><span>Continue watching</span><span>All</span></div>
+          <div class="rail">
+            <div class="tile"><div class="th"><span>18:42</span></div><p>EFC 136 main event, full fight</p></div>
+            <div class="tile"><div class="th"><span>04:10</span></div><p>Weigh-in face-off, EFC 136</p></div>
+            <div class="tile"><div class="th"><span>07:55</span></div><p>Every finish of 2026 so far</p></div>
+          </div>
+        </div>
+
+        <div class="sec">
+          <div class="sech"><span>Latest</span><span>News</span></div>
+        </div>
+        <div class="newsitem"><small>05 AUG 2026</small><h4>Stage set for EFC 136 after intense final weigh-in</h4></div>
+        <div class="newsitem"><small>30 JUL 2026</small><h4>Former title challengers collide at EFC 138</h4></div>
+      </section>
+
+      <!-- SCHEDULE -->
+      <section class="pane" id="p-card">
+        <div class="appbar"><div class="t">Events</div><div class="i">2026</div></div>
+        <div class="row">
+          <div class="date"><b>10</b><small>SEP</small></div>
+          <div style="flex:1"><h4>EFC 137</h4><p>WSB EFC ARENA · MAIN CARD 19H00</p></div>
+          <div class="pill">Tickets</div>
+        </div>
+        <div class="row">
+          <div class="date"><b>08</b><small>OCT</small></div>
+          <div style="flex:1"><h4>EFC 138</h4><p>WSB EFC ARENA · MAIN CARD 19H00</p></div>
+          <div class="pill">Soon</div>
+        </div>
+        <div class="row">
+          <div class="date"><b>06</b><small>AUG</small></div>
+          <div style="flex:1"><h4>EFC 136 — results</h4><p>SANCHEZ VS SWANEPOEL · LW TITLE</p></div>
+          <div class="pill free">Watch</div>
+        </div>
+        <div class="sec"><div class="sech"><span>EFC 138 — announced bouts</span></div></div>
+        <div class="row"><div style="flex:1"><h4>Goncalves vs Bembe</h4><p>ANNOUNCED 30 JUL</p></div></div>
+        <div class="row"><div style="flex:1"><h4>Schultz vs Gasa</h4><p>ANNOUNCED 29 JUL</p></div></div>
+        <div class="row"><div style="flex:1"><h4>Mabilo vs Mhlanga</h4><p>ANNOUNCED 29 JUL</p></div></div>
+      </section>
+
+      <!-- FIGHTERS -->
+      <section class="pane" id="p-fighters">
+        <div class="appbar"><div class="t">Athletes</div><div class="i">120+</div></div>
+        <div class="divtabs">
+          <b class="on">Champions</b><b>Heavyweight</b><b>Middleweight</b><b>Welterweight</b><b>Lightweight</b><b>Featherweight</b><b>Bantamweight</b><b>Flyweight</b><b>Women's FLW</b>
+        </div>
+        <div class="tot">
+          <div class="head">
+            <div><small>Red corner</small><b>Adrian<br>Sanchez</b></div>
+            <div><small>Blue corner</small><b>Bradley<br>Swanepoel</b></div>
+          </div>
+          <div class="totrow"><span>00–0–0</span><span class="lbl">Record</span><span>00–0–0</span></div>
+          <div class="totrow"><span>0 cm</span><span class="lbl">Reach</span><span>0 cm</span></div>
+          <div class="totrow"><span>00</span><span class="lbl">Age</span><span>00</span></div>
+          <div class="totrow"><span>0</span><span class="lbl">KO / TKO</span><span>0</span></div>
+          <div class="totrow"><span>0</span><span class="lbl">Submissions</span><span>0</span></div>
+        </div>
+        <div class="grid2">
+          <div class="card"><div class="th"><i>LIGHTWEIGHT</i></div><p>Adrian Sanchez<em>Champion</em></p></div>
+          <div class="card"><div class="th"><i>WELTERWEIGHT</i></div><p>Bradley Swanepoel<em>Contender</em></p></div>
+          <div class="card"><div class="th"><i>FEATHERWEIGHT</i></div><p>Sithembiso Hadebe<em>Ranked</em></p></div>
+          <div class="card"><div class="th"><i>BANTAMWEIGHT</i></div><p>Godfrey Mkhwanazi<em>Ranked</em></p></div>
+        </div>
+        <p class="phonenote" style="margin:14px 16px 0;text-align:left">Records and measurements shown as placeholders. Live data comes from the CMS.</p>
+      </section>
+
+      <!-- WATCH -->
+      <section class="pane" id="p-watch">
+        <div class="appbar"><div class="t">Fight library</div><div class="i">130+ events</div></div>
+        <div class="divtabs"><b class="on">All</b><b>Full fights</b><b>Highlights</b><b>Title fights</b><b>Behind the scenes</b><b>Free</b></div>
+        <div class="sec"><div class="sech"><span>Recently added</span></div></div>
+        <div class="grid2">
+          <div class="card"><div class="th"><i>18:42</i></div><p>EFC 136 main event<em>Full fight · Premium</em></p></div>
+          <div class="card"><div class="th"><i>02:35</i></div><p>EFC 136 highlights<em>Highlights · Free</em></p></div>
+          <div class="card"><div class="th"><i>11:07</i></div><p>Road to EFC 137<em>Feature · Free</em></p></div>
+          <div class="card"><div class="th"><i>22:18</i></div><p>Classic: EFC 100<em>Full fight · Premium</em></p></div>
+        </div>
+        <div class="sec"><div class="sech"><span>Search the archive</span></div>
+          <div style="border:1px solid var(--line);padding:11px;font-family:var(--mono);font-size:11px;color:var(--mute)">Search fighter, event or division…</div>
+        </div>
+      </section>
+
+      <!-- NEWS -->
+      <section class="pane" id="p-news">
+        <div class="appbar"><div class="t">News</div><div class="i">Push on</div></div>
+        <div class="newsitem"><small>05 AUG 2026 · EVENT</small><h4>Stage set for EFC 136 after intense final weigh-in</h4></div>
+        <div class="newsitem"><small>03 AUG 2026 · EVENT</small><h4>Championship rivals come face to face</h4></div>
+        <div class="newsitem"><small>30 JUL 2026 · MATCHMAKING</small><h4>Former title challengers collide</h4></div>
+        <div class="newsitem"><small>29 JUL 2026 · MATCHMAKING</small><h4>The Equalizer faces South Africa's IMMAF star</h4></div>
+        <div class="newsitem"><small>29 JUL 2026 · MATCHMAKING</small><h4>Shaka meets Samurai</h4></div>
+        <div class="newsitem"><small>28 JUL 2026 · MATCHMAKING</small><h4>Rapid Fire meets Somandla</h4></div>
+      </section>
+
+    </div>
+    <nav class="tabbar" id="tabs">
+      <button class="on" data-p="home"><i>▮</i>Home</button>
+      <button data-p="card"><i>▤</i>Events</button>
+      <button data-p="fighters"><i>◈</i>Athletes</button>
+      <button data-p="watch"><i>▶</i>Watch</button>
+      <button data-p="news"><i>✦</i>News</button>
+    </nav>
+  </div>
+  <p class="phonenote">Tap the bottom bar to move between screens.<br>Headlines and fight cards are real EFC content.<br>Records, times and images are placeholders.</p>
+</aside>
+</div>
+
+<footer><div class="wrap">
+  Concept prototype prepared for EFC Worldwide. Event and news content sourced from efcworldwide.com.<br>
+  Fighter records, video durations and imagery are placeholders. All EFC names and marks belong to EFC Worldwide.
+</div></footer>
+
+<script>
+(function(){
+  var tabs=document.getElementById('tabs');
+  var screen=document.getElementById('screen');
+  tabs.addEventListener('click',function(e){
+    var b=e.target.closest('button'); if(!b) return;
+    tabs.querySelectorAll('button').forEach(function(x){x.classList.remove('on')});
+    b.classList.add('on');
+    document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on')});
+    document.getElementById('p-'+b.dataset.p).classList.add('on');
+    screen.scrollTop=0;
+  });
+
+  document.querySelectorAll('.divtabs').forEach(function(g){
+    g.addEventListener('click',function(e){
+      if(e.target.tagName!=='B') return;
+      g.querySelectorAll('b').forEach(function(x){x.classList.remove('on')});
+      e.target.classList.add('on');
+    });
+  });
+
+  // EFC 137 — Thu 10 Sep 2026, 19:00 CAT (UTC+2)
+  var target=new Date('2026-09-10T19:00:00+02:00').getTime();
+  var pad=function(n){return String(n).padStart(2,'0')};
+  function tick(){
+    var d=target-Date.now();
+    if(d<0){document.getElementById('clock').innerHTML='<div style="flex:1;text-align:center;padding:10px;background:var(--blood);font-family:var(--display);letter-spacing:.1em">LIVE NOW</div>';return}
+    document.getElementById('cd').textContent=Math.floor(d/864e5);
+    document.getElementById('ch').textContent=pad(Math.floor(d/36e5)%24);
+    document.getElementById('cm').textContent=pad(Math.floor(d/6e4)%60);
+    document.getElementById('cs').textContent=pad(Math.floor(d/1e3)%60);
+    setTimeout(tick,1000);
+  }
+  tick();
+})();
+</script>
+</body>
+</html>
